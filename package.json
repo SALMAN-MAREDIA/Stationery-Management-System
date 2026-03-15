@@ -1,0 +1,30 @@
+{
+  "name": "hotel-oasis-management-system",
+  "version": "1.0.0",
+  "description": "Full-stack Hotel Oasis Management System with booking, payment gateway, admin dashboard, and more.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "node tests/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SALMAN-MAREDIA/Stationery-Management-System.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/SALMAN-MAREDIA/Stationery-Management-System/issues"
+  },
+  "homepage": "https://github.com/SALMAN-MAREDIA/Stationery-Management-System#readme",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "better-sqlite3": "^12.8.0",
+    "body-parser": "^2.2.2",
+    "ejs": "^5.0.1",
+    "express": "^5.2.1",
+    "express-session": "^1.19.0"
+  }
+}

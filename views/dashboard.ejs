@@ -1,0 +1,178 @@
+<%- include('partials/header') %>
+
+  <!-- Dashboard Section -->
+  <section class="dashboard-section">
+    <div class="container">
+      <div class="dashboard-header">
+        <h1><i class="fas fa-tachometer-alt"></i> Admin Dashboard</h1>
+        <a href="/admin/logout" class="btn btn-outline btn-sm">Logout</a>
+      </div>
+
+      <!-- Stats Cards -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <i class="fas fa-calendar-check"></i>
+          <div class="stat-info">
+            <h3><%= stats.totalBookings %></h3>
+            <p>Total Bookings</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <i class="fas fa-rupee-sign"></i>
+          <div class="stat-info">
+            <h3>₹<%= stats.totalRevenue.toLocaleString() %></h3>
+            <p>Total Revenue</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <i class="fas fa-door-open"></i>
+          <div class="stat-info">
+            <h3><%= stats.totalRooms %></h3>
+            <p>Total Rooms</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <i class="fas fa-envelope"></i>
+          <div class="stat-info">
+            <h3><%= stats.unreadMessages %></h3>
+            <p>Unread Messages</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="dashboard-tabs">
+        <button class="tab-btn active" data-tab="bookings">Bookings</button>
+        <button class="tab-btn" data-tab="rooms">Rooms</button>
+        <button class="tab-btn" data-tab="messages">Messages (<%= stats.unreadMessages %>)</button>
+      </div>
+
+      <!-- Bookings Tab -->
+      <div class="tab-content active" id="bookings">
+        <% if (bookings.length === 0) { %>
+          <div class="empty-state">
+            <i class="fas fa-calendar-times"></i>
+            <p>No bookings yet</p>
+          </div>
+        <% } else { %>
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Guest</th>
+                  <th>Room</th>
+                  <th>Check-in</th>
+                  <th>Check-out</th>
+                  <th>Amount</th>
+                  <th>Payment</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% bookings.forEach(booking => { %>
+                  <tr>
+                    <td>#<%= booking.id %></td>
+                    <td>
+                      <strong><%= booking.guest_name %></strong><br>
+                      <small><%= booking.email %></small>
+                    </td>
+                    <td><%= booking.category %> <%= booking.type %></td>
+                    <td><%= booking.check_in %></td>
+                    <td><%= booking.check_out %></td>
+                    <td>₹<%= booking.total_amount.toLocaleString() %></td>
+                    <td>
+                      <span class="badge badge-<%= booking.payment_status === 'completed' ? 'success' : 'warning' %>">
+                        <%= booking.payment_status %>
+                      </span>
+                    </td>
+                    <td>
+                      <span class="badge badge-<%= booking.booking_status === 'confirmed' ? 'success' : booking.booking_status === 'cancelled' ? 'danger' : 'info' %>">
+                        <%= booking.booking_status %>
+                      </span>
+                    </td>
+                    <td>
+                      <select class="status-select" data-booking-id="<%= booking.id %>">
+                        <option value="confirmed" <%= booking.booking_status === 'confirmed' ? 'selected' : '' %>>Confirmed</option>
+                        <option value="checked-in" <%= booking.booking_status === 'checked-in' ? 'selected' : '' %>>Checked In</option>
+                        <option value="checked-out" <%= booking.booking_status === 'checked-out' ? 'selected' : '' %>>Checked Out</option>
+                        <option value="cancelled" <%= booking.booking_status === 'cancelled' ? 'selected' : '' %>>Cancelled</option>
+                      </select>
+                    </td>
+                  </tr>
+                <% }) %>
+              </tbody>
+            </table>
+          </div>
+        <% } %>
+      </div>
+
+      <!-- Rooms Tab -->
+      <div class="tab-content" id="rooms">
+        <div class="table-responsive">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Category</th>
+                <th>Type</th>
+                <th>A/C</th>
+                <th>Price</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% rooms.forEach(room => { %>
+                <tr>
+                  <td>#<%= room.id %></td>
+                  <td><%= room.category %></td>
+                  <td><%= room.type %></td>
+                  <td><%= room.ac ? 'Yes' : 'No' %></td>
+                  <td>₹<%= room.price.toLocaleString() %></td>
+                  <td>
+                    <span class="badge badge-<%= room.available ? 'success' : 'danger' %>">
+                      <%= room.available ? 'Available' : 'Occupied' %>
+                    </span>
+                  </td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Messages Tab -->
+      <div class="tab-content" id="messages">
+        <% if (contacts.length === 0) { %>
+          <div class="empty-state">
+            <i class="fas fa-inbox"></i>
+            <p>No messages yet</p>
+          </div>
+        <% } else { %>
+          <div class="messages-list">
+            <% contacts.forEach(contact => { %>
+              <div class="message-card <%= contact.is_read ? '' : 'unread' %>">
+                <div class="message-header">
+                  <div>
+                    <strong><%= contact.name %></strong>
+                    <span class="message-email"><%= contact.email %></span>
+                  </div>
+                  <div>
+                    <small><%= contact.created_at %></small>
+                    <% if (!contact.is_read) { %>
+                      <button class="btn btn-sm mark-read" data-contact-id="<%= contact.id %>">Mark Read</button>
+                    <% } %>
+                  </div>
+                </div>
+                <% if (contact.subject) { %><p class="message-subject"><%= contact.subject %></p><% } %>
+                <p class="message-body"><%= contact.message %></p>
+              </div>
+            <% }) %>
+          </div>
+        <% } %>
+      </div>
+    </div>
+  </section>
+
+<%- include('partials/footer') %>

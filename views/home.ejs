@@ -1,0 +1,154 @@
+<%- include('partials/header') %>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>Welcome to <span class="highlight">Hotel Oasis</span></h1>
+      <p>A perfect place for relaxation in luxury, in the heart of Mumbai City</p>
+      <a href="/booking" class="btn btn-primary">Book Your Stay</a>
+      <a href="/rooms" class="btn btn-outline">Explore Rooms</a>
+    </div>
+  </section>
+
+  <!-- About Preview -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Experience Luxury & Comfort</h2>
+        <p>Founded in 1985, Hotel Oasis is ideally located in the heart of Mumbai City, commercial capital of India.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <i class="fas fa-wifi"></i>
+          <h3>Free WiFi</h3>
+          <p>High-speed internet available in all rooms and common areas</p>
+        </div>
+        <div class="feature-card">
+          <i class="fas fa-snowflake"></i>
+          <h3>Air Conditioned</h3>
+          <p>32 well-designed air-conditioned rooms with modern amenities</p>
+        </div>
+        <div class="feature-card">
+          <i class="fas fa-tv"></i>
+          <h3>Satellite TV</h3>
+          <p>Colour TV with satellite channels in every room</p>
+        </div>
+        <div class="feature-card">
+          <i class="fas fa-phone-alt"></i>
+          <h3>Intercom</h3>
+          <p>Intercom facility for seamless in-hotel communication</p>
+        </div>
+        <div class="feature-card">
+          <i class="fas fa-concierge-bell"></i>
+          <h3>24/7 Service</h3>
+          <p>Attentive, efficient and personalized services round the clock</p>
+        </div>
+        <div class="feature-card">
+          <i class="fas fa-map-marker-alt"></i>
+          <h3>Prime Location</h3>
+          <p>Surrounded with famous hospitals, business and tourist places</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rooms Preview -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <h2>Our Rooms</h2>
+        <p>All rooms are well designed with vibrant colours and furniture</p>
+      </div>
+      <div class="rooms-grid">
+        <% rooms.slice(0, 4).forEach(room => { %>
+          <div class="room-card">
+            <div class="room-image">
+              <div class="room-placeholder">
+                <i class="fas fa-bed"></i>
+              </div>
+              <span class="room-badge"><%= room.ac ? 'A/C' : 'Non A/C' %></span>
+            </div>
+            <div class="room-info">
+              <h3><%= room.category %> <%= room.type %></h3>
+              <p><%= room.description %></p>
+              <div class="room-meta">
+                <span class="room-price">₹<%= room.price %><small>/night</small></span>
+                <a href="/booking" class="btn btn-sm">Book Now</a>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+      <div class="text-center mt-2">
+        <a href="/rooms" class="btn btn-primary">View All Rooms</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tariff Table -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Room Tariff</h2>
+        <p>Affordable luxury for every traveller</p>
+      </div>
+      <div class="table-responsive">
+        <table class="tariff-table">
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Single</th>
+              <th>Double</th>
+              <th>Triple</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>A/C Economy</td>
+              <td>₹1,900/-</td>
+              <td>–</td>
+              <td>–</td>
+            </tr>
+            <tr>
+              <td>Standard Non A/C</td>
+              <td>–</td>
+              <td>₹1,900/-</td>
+              <td>–</td>
+            </tr>
+            <tr>
+              <td>Deluxe A/C</td>
+              <td>₹2,200/-</td>
+              <td>₹2,500/-</td>
+              <td>–</td>
+            </tr>
+            <tr>
+              <td>Executive A/C</td>
+              <td>₹3,000/-</td>
+              <td>₹3,200/-</td>
+              <td>₹3,700/-</td>
+            </tr>
+            <tr>
+              <td>Extra Person A/C</td>
+              <td colspan="3">₹500/-</td>
+            </tr>
+            <tr>
+              <td>Extra Person Non A/C</td>
+              <td colspan="3">₹400/-</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Ready to Experience Luxury?</h2>
+      <p>Book your stay at Hotel Oasis today and enjoy the best hospitality in Mumbai</p>
+      <a href="/booking" class="btn btn-primary btn-lg">Book Now</a>
+    </div>
+  </section>
+
+<%- include('partials/footer') %>

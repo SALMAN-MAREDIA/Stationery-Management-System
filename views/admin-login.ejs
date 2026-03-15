@@ -1,0 +1,41 @@
+<%- include('partials/header') %>
+
+  <!-- Page Banner -->
+  <section class="page-banner page-banner-sm">
+    <div class="hero-overlay"></div>
+    <div class="banner-content">
+      <h1>Admin Login</h1>
+    </div>
+  </section>
+
+  <!-- Login Form -->
+  <section class="section">
+    <div class="container">
+      <div class="login-container">
+        <div class="login-card">
+          <div class="login-header">
+            <i class="fas fa-user-shield"></i>
+            <h2>Admin Panel</h2>
+            <p>Login to manage Hotel Oasis</p>
+          </div>
+          <% if (error) { %>
+            <div class="alert alert-danger"><i class="fas fa-exclamation-circle"></i> <%= error %></div>
+          <% } %>
+          <form action="/admin/login" method="POST" class="login-form">
+            <div class="form-group">
+              <label for="username"><i class="fas fa-user"></i> Username</label>
+              <input type="text" id="username" name="username" required placeholder="Enter username">
+            </div>
+            <div class="form-group">
+              <label for="password"><i class="fas fa-lock"></i> Password</label>
+              <input type="password" id="password" name="password" required placeholder="Enter password">
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Login</button>
+          </form>
+          <p class="login-note">Default: admin / admin123</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<%- include('partials/footer') %>

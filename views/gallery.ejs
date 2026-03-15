@@ -1,0 +1,76 @@
+<%- include('partials/header') %>
+
+  <!-- Page Banner -->
+  <section class="page-banner">
+    <div class="hero-overlay"></div>
+    <div class="banner-content">
+      <h1>Gallery</h1>
+      <p>Take a virtual tour of Hotel Oasis</p>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section class="section">
+    <div class="container">
+      <div class="gallery-filter">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="rooms">Rooms</button>
+        <button class="filter-btn" data-filter="lobby">Lobby</button>
+        <button class="filter-btn" data-filter="exterior">Exterior</button>
+        <button class="filter-btn" data-filter="dining">Dining</button>
+      </div>
+
+      <div class="gallery-grid">
+        <div class="gallery-item" data-category="lobby">
+          <div class="gallery-placeholder">
+            <i class="fas fa-door-open"></i>
+            <span>Hotel Lobby</span>
+          </div>
+        </div>
+        <div class="gallery-item" data-category="rooms">
+          <div class="gallery-placeholder">
+            <i class="fas fa-bed"></i>
+            <span>Deluxe Room</span>
+          </div>
+        </div>
+        <div class="gallery-item" data-category="rooms">
+          <div class="gallery-placeholder">
+            <i class="fas fa-bed"></i>
+            <span>Executive Suite</span>
+          </div>
+        </div>
+        <div class="gallery-item" data-category="exterior">
+          <div class="gallery-placeholder">
+            <i class="fas fa-building"></i>
+            <span>Hotel Exterior</span>
+          </div>
+        </div>
+        <div class="gallery-item" data-category="dining">
+          <div class="gallery-placeholder">
+            <i class="fas fa-utensils"></i>
+            <span>Restaurant</span>
+          </div>
+        </div>
+        <div class="gallery-item" data-category="rooms">
+          <div class="gallery-placeholder">
+            <i class="fas fa-bed"></i>
+            <span>Economy Room</span>
+          </div>
+        </div>
+        <div class="gallery-item" data-category="lobby">
+          <div class="gallery-placeholder">
+            <i class="fas fa-couch"></i>
+            <span>Lounge Area</span>
+          </div>
+        </div>
+        <div class="gallery-item" data-category="exterior">
+          <div class="gallery-placeholder">
+            <i class="fas fa-city"></i>
+            <span>Mumbai Skyline View</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<%- include('partials/footer') %>
