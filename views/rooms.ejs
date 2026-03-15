@@ -1,0 +1,73 @@
+<%- include('partials/header') %>
+
+  <!-- Page Banner -->
+  <section class="page-banner">
+    <div class="hero-overlay"></div>
+    <div class="banner-content">
+      <h1>Our Rooms</h1>
+      <p>All rooms are well designed with vibrant colours and furniture</p>
+    </div>
+  </section>
+
+  <!-- Rooms Section -->
+  <section class="section">
+    <div class="container">
+      <div class="rooms-grid">
+        <% rooms.forEach(room => { %>
+          <div class="room-card">
+            <div class="room-image">
+              <div class="room-placeholder">
+                <i class="fas fa-bed"></i>
+              </div>
+              <span class="room-badge"><%= room.ac ? 'A/C' : 'Non A/C' %></span>
+            </div>
+            <div class="room-info">
+              <h3><%= room.category %> <%= room.type %></h3>
+              <p><%= room.description %></p>
+              <ul class="room-amenities">
+                <li><i class="fas fa-wifi"></i> Free WiFi</li>
+                <li><i class="fas fa-tv"></i> Satellite TV</li>
+                <li><i class="fas fa-phone"></i> Intercom</li>
+                <% if (room.ac) { %><li><i class="fas fa-snowflake"></i> Air Conditioned</li><% } %>
+              </ul>
+              <div class="room-meta">
+                <span class="room-price">₹<%= room.price %><small>/night</small></span>
+                <a href="/booking" class="btn btn-sm">Book Now</a>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tariff Table -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <h2>Room Tariff Card</h2>
+      </div>
+      <div class="table-responsive">
+        <table class="tariff-table">
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Single</th>
+              <th>Double</th>
+              <th>Triple</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>A/C Economy</td><td>₹1,900/-</td><td>–</td><td>–</td></tr>
+            <tr><td>Standard Non A/C</td><td>–</td><td>₹1,900/-</td><td>–</td></tr>
+            <tr><td>Deluxe A/C</td><td>₹2,200/-</td><td>₹2,500/-</td><td>–</td></tr>
+            <tr><td>Executive A/C</td><td>₹3,000/-</td><td>₹3,200/-</td><td>₹3,700/-</td></tr>
+            <tr><td>Extra Person A/C</td><td colspan="3">₹500/-</td></tr>
+            <tr><td>Extra Person Non A/C</td><td colspan="3">₹400/-</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,187 @@
+<%- include('partials/header') %>
+
+  <!-- Page Banner -->
+  <section class="page-banner page-banner-sm">
+    <div class="hero-overlay"></div>
+    <div class="banner-content">
+      <h1>Book a Room</h1>
+      <p>Reserve your stay at Hotel Oasis</p>
+    </div>
+  </section>
+
+  <!-- Booking Form -->
+  <section class="section">
+    <div class="container">
+      <div class="booking-container">
+        <!-- Step 1: Booking Details -->
+        <div class="booking-step active" id="step1">
+          <div class="step-header">
+            <div class="step-indicators">
+              <span class="step-dot active">1</span>
+              <span class="step-line"></span>
+              <span class="step-dot">2</span>
+              <span class="step-line"></span>
+              <span class="step-dot">3</span>
+            </div>
+            <h2>Booking Details</h2>
+          </div>
+
+          <form id="bookingForm" class="booking-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="guest_name">Full Name *</label>
+                <input type="text" id="guest_name" name="guest_name" required placeholder="Your full name">
+              </div>
+              <div class="form-group">
+                <label for="b_email">Email Address *</label>
+                <input type="email" id="b_email" name="email" required placeholder="your@email.com">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="b_phone">Phone Number *</label>
+                <input type="tel" id="b_phone" name="phone" required placeholder="+91-XXXXX XXXXX">
+              </div>
+              <div class="form-group">
+                <label for="guests">Number of Guests</label>
+                <select id="guests" name="guests">
+                  <option value="1">1 Guest</option>
+                  <option value="2">2 Guests</option>
+                  <option value="3">3 Guests</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="check_in">Check-in Date *</label>
+                <input type="date" id="check_in" name="check_in" required>
+              </div>
+              <div class="form-group">
+                <label for="check_out">Check-out Date *</label>
+                <input type="date" id="check_out" name="check_out" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="room_id">Select Room *</label>
+              <select id="room_id" name="room_id" required>
+                <option value="">-- Select a Room --</option>
+                <% rooms.forEach(room => { %>
+                  <option value="<%= room.id %>" data-price="<%= room.price %>">
+                    <%= room.category %> <%= room.type %> (<%= room.ac ? 'A/C' : 'Non A/C' %>) – ₹<%= room.price %>/night
+                  </option>
+                <% }) %>
+              </select>
+            </div>
+
+            <div class="booking-summary" id="bookingSummary" style="display: none;">
+              <h3>Booking Summary</h3>
+              <div class="summary-row"><span>Room:</span> <span id="summaryRoom"></span></div>
+              <div class="summary-row"><span>Nights:</span> <span id="summaryNights"></span></div>
+              <div class="summary-row total"><span>Total:</span> <span id="summaryTotal"></span></div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">Proceed to Payment</button>
+          </form>
+        </div>
+
+        <!-- Step 2: Payment -->
+        <div class="booking-step" id="step2">
+          <div class="step-header">
+            <div class="step-indicators">
+              <span class="step-dot completed">✓</span>
+              <span class="step-line active"></span>
+              <span class="step-dot active">2</span>
+              <span class="step-line"></span>
+              <span class="step-dot">3</span>
+            </div>
+            <h2>Payment</h2>
+          </div>
+
+          <div class="payment-section">
+            <div class="payment-amount">
+              <h3>Amount to Pay: <span id="paymentAmount">₹0</span></h3>
+            </div>
+
+            <div class="payment-methods">
+              <h4>Select Payment Method</h4>
+              <div class="payment-options">
+                <label class="payment-option">
+                  <input type="radio" name="payment_method" value="card" checked>
+                  <div class="payment-option-content">
+                    <i class="fas fa-credit-card"></i>
+                    <span>Credit/Debit Card</span>
+                  </div>
+                </label>
+                <label class="payment-option">
+                  <input type="radio" name="payment_method" value="upi">
+                  <div class="payment-option-content">
+                    <i class="fas fa-mobile-alt"></i>
+                    <span>UPI Payment</span>
+                  </div>
+                </label>
+                <label class="payment-option">
+                  <input type="radio" name="payment_method" value="netbanking">
+                  <div class="payment-option-content">
+                    <i class="fas fa-university"></i>
+                    <span>Net Banking</span>
+                  </div>
+                </label>
+              </div>
+
+              <!-- Card Form (shown by default) -->
+              <div class="card-form" id="cardForm">
+                <div class="form-group">
+                  <label>Card Number</label>
+                  <input type="text" placeholder="1234 5678 9012 3456" maxlength="19" id="cardNumber">
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>Expiry Date</label>
+                    <input type="text" placeholder="MM/YY" maxlength="5" id="cardExpiry">
+                  </div>
+                  <div class="form-group">
+                    <label>CVV</label>
+                    <input type="password" placeholder="***" maxlength="3" id="cardCvv">
+                  </div>
+                </div>
+              </div>
+
+              <button id="payBtn" class="btn btn-primary btn-block btn-lg">
+                <i class="fas fa-lock"></i> Pay Now
+              </button>
+              <p class="payment-note"><i class="fas fa-shield-alt"></i> Your payment is secure and encrypted</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3: Confirmation -->
+        <div class="booking-step" id="step3">
+          <div class="step-header">
+            <div class="step-indicators">
+              <span class="step-dot completed">✓</span>
+              <span class="step-line completed"></span>
+              <span class="step-dot completed">✓</span>
+              <span class="step-line completed"></span>
+              <span class="step-dot completed">✓</span>
+            </div>
+            <h2>Booking Confirmed!</h2>
+          </div>
+
+          <div class="confirmation-section">
+            <div class="confirmation-icon">
+              <i class="fas fa-check-circle"></i>
+            </div>
+            <h3>Thank You!</h3>
+            <p>Your booking has been confirmed. A confirmation email will be sent to your email address.</p>
+            <div class="confirmation-details" id="confirmationDetails"></div>
+            <a href="/" class="btn btn-primary">Back to Home</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<%- include('partials/footer') %>

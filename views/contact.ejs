@@ -1,0 +1,91 @@
+<%- include('partials/header') %>
+
+  <!-- Page Banner -->
+  <section class="page-banner">
+    <div class="hero-overlay"></div>
+    <div class="banner-content">
+      <h1>Contact Us</h1>
+      <p>Get in touch with Hotel Oasis</p>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="section">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info-section">
+          <h2>Get In Touch</h2>
+          <p>We'd love to hear from you. Reach out to us for reservations, inquiries, or feedback.</p>
+
+          <div class="contact-details">
+            <div class="contact-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <div>
+                <h4>Address</h4>
+                <p>276, Shaheed Bhagat Singh Road,<br>Near GPO, Fort, Mumbai-400001</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-phone"></i>
+              <div>
+                <h4>Telephone</h4>
+                <p>+91-22-3022 7886</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-mobile-alt"></i>
+              <div>
+                <h4>Mobile</h4>
+                <p>+91-82864 70877</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-envelope"></i>
+              <div>
+                <h4>Email</h4>
+                <p>info@hoteloasisindia.in<br>hoteloasismumbai@gmail.com</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form-section">
+          <h2>Send Us a Message</h2>
+          <form id="contactForm" class="contact-form">
+            <div class="form-group">
+              <label for="name">Full Name *</label>
+              <input type="text" id="name" name="name" required placeholder="Your full name">
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address *</label>
+              <input type="email" id="email" name="email" required placeholder="your@email.com">
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone" placeholder="+91-XXXXX XXXXX">
+            </div>
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <input type="text" id="subject" name="subject" placeholder="Subject of your message">
+            </div>
+            <div class="form-group">
+              <label for="message">Message *</label>
+              <textarea id="message" name="message" rows="5" required placeholder="Write your message here..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Send Message</button>
+          </form>
+          <div id="contactResult" class="form-result" style="display: none;"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Map Section -->
+  <section class="map-section">
+    <div class="map-placeholder">
+      <i class="fas fa-map-marked-alt"></i>
+      <p>Hotel Oasis – 276, Shaheed Bhagat Singh Road, Near GPO, Fort, Mumbai-400001</p>
+    </div>
+  </section>
+
+<%- include('partials/footer') %>
